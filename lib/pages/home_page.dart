@@ -1,7 +1,6 @@
 //首页
 
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../service/service_method.dart';
@@ -10,6 +9,9 @@ import 'dart:convert';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import '../routers/application.dart';
+
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -154,7 +156,9 @@ class _HomePageState extends State<HomePage>
     if (hotGoodsList.length != null) {
       List<Widget> listWidget = hotGoodsList.map((e) {
         return InkWell(
-          onTap: () {},
+          onTap: () {
+            Application.router.navigateTo(context, '/detail?id=${e['goodsId']}');
+          },
           child: Container(
             width: ScreenUtil().setWidth(370),
             color: Colors.white,
